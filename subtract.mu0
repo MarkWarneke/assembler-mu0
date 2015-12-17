@@ -1,0 +1,9 @@
+; Laden des Minuenden aus Speicherzelle $30
+ACC<= [$30]
+; ACC ($30) subtrahiert mit Adresse $31
+ACC- [$31]
+; ACC ($30 - $31) Differenz schreiben in Speicherzelle $32
+ACC=> [$32]
+STOP
+
+.end

@@ -1,0 +1,28 @@
+; Laden des Produkts aus Speicherzelle $B2, am Anfang 0
+ACC<= [$B2]
+
+; ACC ($B0) addieren mit Speicherzelle $B0
+ACC+ [$B0]
+
+; ACC ($B0) speichern in ($B2)
+ACC=> [$B2]
+
+; Laden des Multiplikators aus ($B1)
+ACC<= [$B1]
+
+; ACC um eins verringern
+ACC- ONE
+
+; Multiplikator ist nach einem Durchlauf um eins reduziert
+ACC=> [$B1]
+
+; Kontrolliert ob ACC = 0, ACC wird um eins pro Durchlauf reduziert und mit dem neuen Multiplikator Wert gefüllt, der gegen 0 strebt.
+IF!=0 PC<= $0
+
+STOP
+
+; Schleifen Variable
+.label ONE
+.word 1
+
+.end

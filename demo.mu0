@@ -1,0 +1,11 @@
+; Laden des Wertes 1 in den Akkumulator
+ACC<= [MSVALUE]
+; Speichern des ACC-Inhaltes in der Speicherzelle mit der Adresse $20
+ACC=> [$20]
+STOP
+
+; Definition der Konstanten 1, die über den symbolischen Namen "MSVALUE"
+; referenzierbar ist
+.label MSVALUE
+.word 1
+.end

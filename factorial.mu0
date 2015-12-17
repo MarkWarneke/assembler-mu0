@@ -1,0 +1,74 @@
+; Schreiben Sie basierend auf dem MU0-Programm multiply.mu0 (aus Aufgabe 3) das neue MU0- Programm factorial.mu0. 
+; Dieses erwartet in der Speicherzelle mit der Adresse $A0 den Eingangswert n und schreibt den errechneten Wert n! in $A1 zurück.
+
+; Hinweise:
+
+; Überlegen Sie, wie Sie die Rechenvorschrift mithilfe wiederholter Multiplikationen abbilden können.
+
+; Schreiben Sie die Funktionalität des Programms multiply.mu0 zunächst derart um, dass diese die Form einer Subroutine annimmt. Eine Subroutine besteht aus
+; o einer Einsprungadresse,
+; o u. U. ein oder mehrere Eingabeparameter,
+; o evtl. Ausgabeparameter,
+; o und einer Rücksprungadresse.
+
+; Da der MU0-Assembler keine variablen Rücksprungadressen unterstützt, nutzen Sie stattdessen einen Verknüpfungspunkt (symbolischer Name), den Sie in Ihrem Hauptprogramm definieren.
+
+; Fakultät
+
+ACC<= [$A0]
+ACC=> ADDEND
+ACC- ONE
+ACC=> N
+ACC=> COUNTER
+
+
+; Multiplikationsroutine
+ACC<= RESULT
+ACC+ ADDEND
+ACC=> RESULT
+ACC<= COUNTER
+ACC- ONE
+IF!=0 PC<= $4
+
+ACC<= RESULT
+ACC=> [$A1]
+ACC=> ADDEND
+ACC<= ZERO
+ACC=> RESULT
+ACC<= N
+ACC- ONE
+IF!=0 PC<= $3
+
+STOP
+
+; Variablen
+
+; Sprung Adresse Multiplikation
+.label MULTIPLIKATION
+PC<= $4
+
+; Ergebnis
+.label RESULT
+.word 0
+
+; Fakultäts Zähler
+.label N
+.word 0
+
+; Addierer / Multiplikand
+.label ADDEND
+.word 0
+
+; Multiplikations Zähler / Multiplikator
+.label COUNTER
+.word 0
+
+; Definierter Wert Eins One
+.label ONE
+.word 1
+
+; Definiert Wert Null Zero
+.label ZERO
+.word 0
+
+.end

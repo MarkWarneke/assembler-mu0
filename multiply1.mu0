@@ -1,0 +1,22 @@
+; Laden des Multiplikators aus Speicherzelle $B1
+ACC<= [$B1]
+
+; ACC ($B1) addieren mit Speicherzelle $B1
+ACC+ [$B1]
+
+; Schleife um Addition Multiplikator(§B0) mal zu wiederholen
+IF!=0 PC<= LOOP
+
+; ACC ($B1 * $B0) Produkt schreiben in Speicherzelle $B2
+ACC=> [$B2]
+
+STOP
+
+; Schleifen Variable mit Anzahl des Multiplikanden (Kommutativgesetz (Vertauschung))
+.lable LOOP
+.word [$B0]
+
+.end
+
+
+
